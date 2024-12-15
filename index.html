@@ -180,12 +180,14 @@
         }
 
         function validateInput(event) {
-            const input = event.target.value;
-            const arabicRegex = /^[\u0600-\u06FF\s]+$/;
-            if (!arabicRegex.test(input) && input !== '') {
-                event.target.value = input.replace(/[^ا-ي\s]/g, '');
-            }
-        }
+    const input = event.target.value;
+    // الاحتفاظ بجميع الحروف العربية، والتنوين، والتشكيل، والنقطة والفاصلة، والفراغات
+    event.target.value = input.replace(/[^ا-يٱؤئإأآءًٌٍُِّْ،.;\s]/g, '');
+}
+
+
+
+
 
         function confirmSend() {
             const message = messageBox.value;
@@ -197,11 +199,11 @@
 
             Swal.fire({
                 title: 'تأكيد الإرسال',
-                text: 'هل أنت متأكد أنك تريد إرسال هذه الرسالة؟',
+                text: 'هل أنت متأكد أن رسالتك لا تحتوي على أخطاء ؟',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'نعم، أرسلها!',
-                cancelButtonText: 'لا، ألغِ'
+                confirmButtonText: 'نعم',
+                cancelButtonText: 'لا'
             }).then((result) => {
                 if (result.isConfirmed) {
                     openTextInput(message);
