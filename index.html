@@ -182,8 +182,9 @@
         function validateInput(event) {
     const input = event.target.value;
     // الاحتفاظ بجميع الحروف العربية، والتنوين، والتشكيل، والنقطة والفاصلة، والفراغات
-    event.target.value = input.replace(/[^ا-يٱؤئإأآءًٌٍُِّْ،.;\s]/g, '');
+    event.target.value = input.replace(/[^ا-يٱؤئإأآءًٌٍُِّْ،.;َٰ\s]/g, '');
 }
+
 
 
 
